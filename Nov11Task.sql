@@ -15,6 +15,49 @@ insert into Andhara_hotels values(10,'Anu Hotel','Nandyal',110,'Bellary','355V54
 select * from Andhara_hotels;
 
 
+select Hotel_name from Andhara_hotels where item_quantity in (select item_quantity from indian_hotels where item_quantity = 1);   /*   special  when table contains duplicates values use in operator */
+
+select Hotel_name from Andhara_hotels where item_quantity = (select item_quantity from indian_hotels where item_quantity = 4);
+select Hotel_name from Andhara_hotels where special_Item in (select special_Item from indian_hotels where special_Item = 'LemonRice');
+select Hotel_name,city,item_price from Andhara_hotels where pincode in (select pincode from indian_hotels where pincode = 110);
+select Hotel_name,city,item_price from Andhara_hotels where special_Item in (select special_Item from indian_hotels where special_Item = 'PlaneDosa');
+
+select Hotel_name from Andhara_hotels where item_quantity in (select item_quantity from indian_hotels where item_quantity = 2);  /*   special use more than one values use in operator  */
+
+select Hotel_name from Andhara_hotels where item_quantity in (select item_quantity from indian_hotels where item_quantity = 4);  /*   special use more than one values use in operator  */
+select Hotel_name from Andhara_hotels where item_quantity in (select item_quantity from indian_hotels where item_quantity = 3);  /*   special use more than one values use in operator  */
+select Hotel_name,city,item_price from Andhara_hotels where special_Item = (select special_Item from indian_hotels where special_Item = 'Mutton');
+select Hotel_name from Andhara_hotels where special_Item = (select special_Item from indian_hotels where special_Item = 'Dosa');
+		/*  joins  */
+/*  inner joins */
+select Andhara_hotels.city,Karanataka_hotels.item_price from Andhara_hotels inner join Karanataka_hotels on Andhara_hotels.item_quantity = Karanataka_hotels.item_quantity;
+select Andhara_hotels.Hotel_name,Karanataka_hotels.pincode from Andhara_hotels inner join Karanataka_hotels on Andhara_hotels.item_quantity = Karanataka_hotels.item_quantity;
+select Andhara_hotels.location_area,Karanataka_hotels.item_price from Andhara_hotels inner join Karanataka_hotels on Andhara_hotels.item_quantity = Karanataka_hotels.item_quantity;
+select Andhara_hotels.pincode,Karanataka_hotels.Hotel_name from Andhara_hotels inner join Karanataka_hotels on Andhara_hotels.item_quantity = Karanataka_hotels.item_quantity;
+
+select Andhara_hotels.hotel_ownerName,Karanataka_hotels.chief_name,indian_hotels.special_Item from ((Andhara_hotels inner join Karanataka_hotels on Andhara_hotels.item_quantity = Karanataka_hotels.item_quantity)inner join indian_hotels on Andhara_hotels.special_Item=indian_hotels.special_Item);
+
+/*  left joins */
+select Andhara_hotels.city,Karanataka_hotels.item_price from Andhara_hotels left join Karanataka_hotels on Andhara_hotels.item_quantity = Karanataka_hotels.item_quantity order by  Andhara_hotels.city;
+select Andhara_hotels.Hotel_name,Karanataka_hotels.pincode from Andhara_hotels left join Karanataka_hotels on Andhara_hotels.item_quantity = Karanataka_hotels.item_quantity;
+select Andhara_hotels.location_area,Karanataka_hotels.item_price from Andhara_hotels left join Karanataka_hotels on Andhara_hotels.item_quantity = Karanataka_hotels.item_quantity;
+select Andhara_hotels.pincode,Karanataka_hotels.Hotel_name from Andhara_hotels left join Karanataka_hotels on Andhara_hotels.item_quantity = Karanataka_hotels.item_quantity;
+select Andhara_hotels.hotel_ownerName,Karanataka_hotels.chief_name from Andhara_hotels left join Karanataka_hotels on Andhara_hotels.item_quantity = Karanataka_hotels.item_quantity;
+/*  right joins */
+select Andhara_hotels.city,Karanataka_hotels.item_price from Andhara_hotels right join Karanataka_hotels on Andhara_hotels.item_quantity = Karanataka_hotels.item_quantity;
+select Andhara_hotels.Hotel_name,Karanataka_hotels.pincode from Andhara_hotels right join Karanataka_hotels on Andhara_hotels.item_quantity = Karanataka_hotels.item_quantity;
+select Andhara_hotels.location_area,Karanataka_hotels.item_price from Andhara_hotels right join Karanataka_hotels on Andhara_hotels.item_quantity = Karanataka_hotels.item_quantity;
+select Andhara_hotels.pincode,Karanataka_hotels.Hotel_name from Andhara_hotels right join Karanataka_hotels on Andhara_hotels.item_quantity = Karanataka_hotels.item_quantity;
+select Andhara_hotels.hotel_ownerName,Karanataka_hotels.chief_name from Andhara_hotels right join Karanataka_hotels on Andhara_hotels.item_quantity = Karanataka_hotels.item_quantity;
+/*  Cartesian joins */
+select Andhara_hotels.city,Karanataka_hotels.item_price from Andhara_hotels cross join Karanataka_hotels on Andhara_hotels.item_quantity = Karanataka_hotels.item_quantity order by Andhara_hotels.city;
+select Andhara_hotels.Hotel_name,Karanataka_hotels.pincode from Andhara_hotels inner join Karanataka_hotels on Andhara_hotels.item_quantity = Karanataka_hotels.item_quantity;
+select Andhara_hotels.location_area,Karanataka_hotels.item_price from Andhara_hotels inner join Karanataka_hotels on Andhara_hotels.item_quantity = Karanataka_hotels.item_quantity;
+select Andhara_hotels.pincode,Karanataka_hotels.Hotel_name from Andhara_hotels inner join Karanataka_hotels on Andhara_hotels.item_quantity = Karanataka_hotels.item_quantity;
+select Andhara_hotels.hotel_ownerName,Karanataka_hotels.chief_name from Andhara_hotels inner join Karanataka_hotels on Andhara_hotels.item_quantity = Karanataka_hotels.item_quantity;
+
+
+
 create table Karanataka_hotels(id int not null, Hotel_name varchar(30),city varchar(30),pincode int,location_area varchar(30),hotel_gstNo varchar(30),special_Item varchar(30),item_price int,item_quantity int,hotel_ownerName varchar(30),chief_name varchar(30));
 insert into Karanataka_hotels values(1,'Gaythari Hotel','Banglore',101,'Charminer','654B4T44D547','Biryan',150,1,'Veena','Geetha');
 insert into Karanataka_hotels values(2,'Mourya Hotel','Mangalore',102,'RajajiNagar','24377B32G3','Mutton',200,2,'Arun','Johshila');
@@ -29,7 +72,47 @@ insert into Karanataka_hotels values(10,'Afreen Biryan','Tumkur',110,'Bellary','
 
 select * from Karanataka_hotels; 
 
-select Hotel_name from indian_hotels where pincode = (select pincode from Karanataka_hotels where pincode = 105);
+select Hotel_name from Karanataka_hotels where pincode = (select pincode from indian_hotels where pincode = 110);
+select Hotel_name from Karanataka_hotels where pincode = (select pincode from indian_hotels where pincode = 106);
+select Hotel_name from Karanataka_hotels where special_Item in (select special_Item from indian_hotels where special_Item = 'LemonRice');
+select Hotel_name,city,Karanataka_hotels from indian_hotels where pincode in (select pincode from indian_hotels where pincode = 110);
+select Hotel_name,city,Karanataka_hotels from indian_hotels where pincode in (select pincode from indian_hotels where pincode = 106);
+
+select Hotel_name from Karanataka_hotels where item_quantity in (select item_quantity from indian_hotels where item_quantity = 2);  /*   special use more than one values use in operator  */
+
+select Hotel_name from Karanataka_hotels where item_quantity in (select item_quantity from indian_hotels where item_quantity = 4);  /*   special use more than one values use in operator  */
+select Hotel_name from Karanataka_hotels where item_quantity in (select item_quantity from indian_hotels where item_quantity = 3);  /*   special use more than one values use in operator  */
+select Hotel_name,city,item_price from Karanataka_hotels where special_Item = (select special_Item from indian_hotels where special_Item = 'Mutton');
+select Hotel_name from Karanataka_hotels where pincode = (select pincode from indian_hotels where pincode = 101);
+
+
+		/*  joins  */
+/*  inner joins */
+select indian_hotels.city,Karanataka_hotels.item_price from indian_hotels inner join Karanataka_hotels on indian_hotels.item_quantity = Karanataka_hotels.item_quantity;
+select indian_hotels.Hotel_name,Karanataka_hotels.pincode from indian_hotels inner join Karanataka_hotels on indian_hotels.item_quantity = Karanataka_hotels.item_quantity;
+select indian_hotels.location_area,Karanataka_hotels.item_price from indian_hotels inner join Karanataka_hotels on indian_hotels.item_quantity = Karanataka_hotels.item_quantity;
+select indian_hotels.pincode,Karanataka_hotels.Hotel_name from indian_hotels inner join Karanataka_hotels on indian_hotels.item_quantity = Karanataka_hotels.item_quantity;
+
+select indian_hotels.hotel_ownerName,Karanataka_hotels.chief_name,Andhara_hotels.special_Item from ((indian_hotels inner join Karanataka_hotels on indian_hotels.pincode = Karanataka_hotels.pincode)inner join indian_hotels on indian_hotels.special_Item=Andhara_hotels.special_Item);
+
+/*  left joins */
+select indian_hotels.city,Karanataka_hotels.item_price from indian_hotels left join Karanataka_hotels on indian_hotels.item_quantity = Karanataka_hotels.item_quantity ;
+select indian_hotels.Hotel_name,Karanataka_hotels.pincode from indian_hotels left join Karanataka_hotels on indian_hotels.special_Item = Karanataka_hotels.special_Item;
+select indian_hotels.location_area,Karanataka_hotels.item_price from indian_hotels left join Karanataka_hotels on indian_hotels.special_Item = Karanataka_hotels.special_Item;
+select indian_hotels.pincode,Karanataka_hotels.Hotel_name from indian_hotels left join Karanataka_hotels on indian_hotels.special_Item = Karanataka_hotels.special_Item;
+select indian_hotels.hotel_ownerName,Karanataka_hotels.chief_name from indian_hotels left join Karanataka_hotels on indian_hotels.special_Item = Karanataka_hotels.special_Item;
+/*  right joins */
+select Andhara_hotels.city,Karanataka_hotels.item_price from Andhara_hotels right join Karanataka_hotels on Andhara_hotels.item_quantity = Karanataka_hotels.item_quantity;
+select Andhara_hotels.Hotel_name,Karanataka_hotels.pincode from Andhara_hotels right join Karanataka_hotels on Andhara_hotels.item_quantity = Karanataka_hotels.item_quantity;
+select Andhara_hotels.location_area,Karanataka_hotels.item_price from Andhara_hotels right join Karanataka_hotels on Andhara_hotels.item_quantity = Karanataka_hotels.item_quantity;
+select Andhara_hotels.pincode,Karanataka_hotels.Hotel_name from Andhara_hotels right join Karanataka_hotels on Andhara_hotels.item_quantity = Karanataka_hotels.item_quantity;
+select Andhara_hotels.hotel_ownerName,Karanataka_hotels.chief_name from Andhara_hotels right join Karanataka_hotels on Andhara_hotels.item_quantity = Karanataka_hotels.item_quantity;
+/*  Cartesian joins */
+select Andhara_hotels.city,Karanataka_hotels.item_price from Andhara_hotels cross join Karanataka_hotels on Andhara_hotels.item_quantity = Karanataka_hotels.item_quantity order by Andhara_hotels.city;
+select Andhara_hotels.Hotel_name,Karanataka_hotels.pincode from Andhara_hotels inner join Karanataka_hotels on Andhara_hotels.item_quantity = Karanataka_hotels.item_quantity;
+select Andhara_hotels.location_area,Karanataka_hotels.item_price from Andhara_hotels inner join Karanataka_hotels on Andhara_hotels.item_quantity = Karanataka_hotels.item_quantity;
+select Andhara_hotels.pincode,Karanataka_hotels.Hotel_name from Andhara_hotels inner join Karanataka_hotels on Andhara_hotels.item_quantity = Karanataka_hotels.item_quantity;
+select Andhara_hotels.hotel_ownerName,Karanataka_hotels.chief_name from Andhara_hotels inner join Karanataka_hotels on Andhara_hotels.item_quantity = Karanataka_hotels.item_quantity;
 
 
 create table indian_hotels(id int not null, Hotel_name varchar(30),city varchar(30),pincode int,location_area varchar(30),hotel_gstNo varchar(30),special_Item varchar(30),item_price int,item_quantity int,hotel_ownerName varchar(30),chief_name varchar(30));
@@ -45,3 +128,17 @@ insert into indian_hotels values(9,'Ravi chats','UP',109,'Barodawallah','6543P78
 insert into indian_hotels values(10,'Shubi phuri','Telengana',110,'Jangali','6567V78M456','PlaneDosa',40,3,'vinoda','Lokesh');
 
 select * from indian_hotels;
+
+
+select Hotel_name from indian_hotels where pincode = (select pincode from Karanataka_hotels where pincode = 105);
+select Hotel_name from indian_hotels where pincode = (select pincode from Karanataka_hotels where pincode = 102);
+select Hotel_name from indian_hotels where special_Item in (select pincode from Karanataka_hotels where special_Item = 'Biryan');
+select Hotel_name,city,location_area from indian_hotels where pincode in (select pincode from Karanataka_hotels where pincode = 110);
+select Hotel_name,city,location_area from indian_hotels where pincode in (select pincode from Karanataka_hotels where pincode = 106);
+
+select Hotel_name from indian_hotels where item_quantity in (select item_quantity from Karanataka_hotels where item_quantity = 1);  /*   special use more than one values use in operator  */
+
+select Hotel_name from indian_hotels where item_quantity in (select item_quantity from Karanataka_hotels where item_quantity = 1);  /*   special use more than one values use in operator  */
+select Hotel_name from indian_hotels where item_quantity in (select item_quantity from Karanataka_hotels where item_quantity = 1);  /*   special use more than one values use in operator  */
+select Hotel_name,city,item_price from indian_hotels where special_Item = (select special_Item from Karanataka_hotels where special_Item = 'Biryan');
+select Hotel_name from indian_hotels where pincode = (select pincode from Karanataka_hotels where pincode = 105);
