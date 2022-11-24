@@ -109,8 +109,7 @@ insert into columnwelthgames values(13,'Bowls',22,'iCanada',23,'Vitorial',25,19,
 insert into columnwelthgames values(14,'Basket Ball',40,'South America',44,'Lokesh',26,17,'Bisleri','Kanni',15,17,18,'Enmmi','Attu','Sakhalin','Harbin','Shiashkotan','Umnak','Volcano','Running Game');
 insert into columnwelthgames values(15,'Diving',36,'Japan',27,'Sunil',27,29,'Colo','Bgraner',29,5,19,'Mika','Magadan','Mama','Dhakar','Batan','Hokkaido','Negros','Diving game');
 
-select * from columnwelthgames;
-
+  
 select lpad('game_name',10,'A');
 select lpad('game_name',19,'R');
 select lpad('Caption_name',20,'SA');
@@ -170,3 +169,5 @@ select runners_team from columnwelthgames where runners_team like 'S%';
 
 select id,game_name from columnwelthgames group by id having count(no_of_playares)<10;
 
+select * from columnwelthgames where id not in (4,8);
+select * from columnwelthgames where id  in (4,8);

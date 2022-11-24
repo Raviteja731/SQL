@@ -15,6 +15,7 @@ insert into Andhara_hotels values(10,'Anu Hotel','Nandyal',110,'Bellary','355V54
 select * from Andhara_hotels;
 
 
+<<<<<<< HEAD
 select Hotel_name from Andhara_hotels where item_quantity in (select item_quantity from indian_hotels where item_quantity = 1);   /*   special  when table contains duplicates values use in operator */
 
 select Hotel_name from Andhara_hotels where item_quantity = (select item_quantity from indian_hotels where item_quantity = 4);
@@ -58,6 +59,8 @@ select Andhara_hotels.hotel_ownerName,Karanataka_hotels.chief_name from Andhara_
 
 
 
+=======
+>>>>>>> b7400ecf490f920c0b94d7432c951dfaff21455e
 create table Karanataka_hotels(id int not null, Hotel_name varchar(30),city varchar(30),pincode int,location_area varchar(30),hotel_gstNo varchar(30),special_Item varchar(30),item_price int,item_quantity int,hotel_ownerName varchar(30),chief_name varchar(30));
 insert into Karanataka_hotels values(1,'Gaythari Hotel','Banglore',101,'Charminer','654B4T44D547','Biryan',150,1,'Veena','Geetha');
 insert into Karanataka_hotels values(2,'Mourya Hotel','Mangalore',102,'RajajiNagar','24377B32G3','Mutton',200,2,'Arun','Johshila');
@@ -72,6 +75,7 @@ insert into Karanataka_hotels values(10,'Afreen Biryan','Tumkur',110,'Bellary','
 
 select * from Karanataka_hotels; 
 
+<<<<<<< HEAD
 select Hotel_name from Karanataka_hotels where pincode = (select pincode from indian_hotels where pincode = 110);
 select Hotel_name from Karanataka_hotels where pincode = (select pincode from indian_hotels where pincode = 106);
 select Hotel_name from Karanataka_hotels where special_Item in (select special_Item from indian_hotels where special_Item = 'LemonRice');
@@ -113,6 +117,9 @@ select Andhara_hotels.Hotel_name,Karanataka_hotels.pincode from Andhara_hotels i
 select Andhara_hotels.location_area,Karanataka_hotels.item_price from Andhara_hotels inner join Karanataka_hotels on Andhara_hotels.item_quantity = Karanataka_hotels.item_quantity;
 select Andhara_hotels.pincode,Karanataka_hotels.Hotel_name from Andhara_hotels inner join Karanataka_hotels on Andhara_hotels.item_quantity = Karanataka_hotels.item_quantity;
 select Andhara_hotels.hotel_ownerName,Karanataka_hotels.chief_name from Andhara_hotels inner join Karanataka_hotels on Andhara_hotels.item_quantity = Karanataka_hotels.item_quantity;
+=======
+select Hotel_name from indian_hotels where pincode = (select pincode from Karanataka_hotels where pincode = 105);
+>>>>>>> b7400ecf490f920c0b94d7432c951dfaff21455e
 
 
 create table indian_hotels(id int not null, Hotel_name varchar(30),city varchar(30),pincode int,location_area varchar(30),hotel_gstNo varchar(30),special_Item varchar(30),item_price int,item_quantity int,hotel_ownerName varchar(30),chief_name varchar(30));
@@ -127,6 +134,7 @@ insert into indian_hotels values(8,'Rashmi chats','Gujarat',108,'Sidhwa','874K76
 insert into indian_hotels values(9,'Ravi chats','UP',109,'Barodawallah','6543P78O876','Chicken',190,7,'Chetan','Chaitra');
 insert into indian_hotels values(10,'Shubi phuri','Telengana',110,'Jangali','6567V78M456','PlaneDosa',40,3,'vinoda','Lokesh');
 
+<<<<<<< HEAD
 select * from indian_hotels;
 
 
@@ -142,3 +150,6 @@ select Hotel_name from indian_hotels where item_quantity in (select item_quantit
 select Hotel_name from indian_hotels where item_quantity in (select item_quantity from Karanataka_hotels where item_quantity = 1);  /*   special use more than one values use in operator  */
 select Hotel_name,city,item_price from indian_hotels where special_Item = (select special_Item from Karanataka_hotels where special_Item = 'Biryan');
 select Hotel_name from indian_hotels where pincode = (select pincode from Karanataka_hotels where pincode = 105);
+=======
+select * from indian_hotels;
+>>>>>>> b7400ecf490f920c0b94d7432c951dfaff21455e
